@@ -20,6 +20,7 @@ Setup
 First, place both the computer and Android device on the same network.
 
 On Computer/Server:
+  (need javac setup)
   cd phouseServer
   javac driver.java
   java driver
@@ -38,3 +39,23 @@ Adjust the sensitivity to a speed of your liking.
 The left/right mouse buttons can be held down like a normal mouse's buttons.
 Calibrate zeros the speed of the cursor at any given rotation of the device.
 --------------------------------------------------------------------------------
+Changelog:
+  10-02-16
+    PhouseServer
+      -User-defined socket connection
+      -Tracks mouse location by itself to prevent truncation of floats
+      -Keeps track of display width/height as well to prevent runoff
+      -Handles disconnections a bit more gracefully, also now has way for client
+       to shutdown server.
+    PhouseClient
+      -Added sensitivity slider
+      -Added editText fields for server IP and socket
+      -Added calibration button
+	10-01-16
+	  PhouseServer
+	    -Set up fixed socket connection
+	    -Can take strings from clients and call java Robot functions accordingly
+	  PhouseClient
+	    -Added buttons for left/right click, connecting/disconnecting with server
+	    -Added onTouch and onClick event listeners which allow for tracking
+	     presses as well as releases for realistic mouse inputs.

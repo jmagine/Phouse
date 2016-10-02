@@ -1,13 +1,16 @@
 import java.awt.AWTException;
 import java.awt.Robot;
+import java.awt.Toolkit;
 import java.awt.event.InputEvent;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.awt.Dimension;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Scanner;
  
 public class ComputerPort {
 	private BufferedReader in = null;
@@ -18,24 +21,37 @@ public class ComputerPort {
 	private boolean running = false;
 	private boolean isConnected=false;
 	private int serverPort = 8998;
+	private int height;
+	private int width;	
 	
 	private float nowx;
 	private float nowy;
  
 	public ComputerPort() {
+		selectPort();
 		init();
+	}
+	
+	private void selectPort() {
+		Scanner scan = new Scanner(System.in);
+		System.out.print("Please select a socket (e.g. 8998): ");
+		serverPort = Integer.parseInt(scan.next());
+		scan.close();
 	}
 	
 	private void init() {
 		try{
 			System.out.println("[Server] INIT: Socket: " + serverPort);
+			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+			width = screenSize.width;
+			height = screenSize.height;
 	    	robot = new Robot(); //create robot for automating mouse movements/clicks
 			server = new ServerSocket(serverPort); //create a server socket on port
 			Point point = MouseInfo.getPointerInfo().getLocation(); //Get current mouse position
-			nowx=point.x;
-			nowy=point.y;
+			nowx = point.x;
+			nowy = point.y;
 		}catch (IOException e) {
-			System.out.println("[Server] Error in opening Socket");
+			System.out.println("[Server] Error in opening Socket. Make sure no other program is using this socket!");
 			System.exit(-1);
 		}catch (AWTException e) {
 			System.out.println("[Server] Error in creating robot instance");
@@ -72,6 +88,17 @@ public class ComputerPort {
 						float movey = Float.parseFloat(line.split(",")[1]);//extract movement in y direction
 						nowx += movex;
 						nowy += movey;
+						
+						if(nowx < 0)
+							nowx = 0;
+						else if(nowx > width)
+							nowx = width;
+						
+						if(nowy < 0)
+							nowy = 0;
+						else if(nowy > height)
+							nowy = height;
+						
 						robot.mouseMove((int)(nowx),(int)(nowy));//Move mouse pointer to new location
 					}
 					//handle clicks
