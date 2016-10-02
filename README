@@ -53,11 +53,11 @@ Changelog:
       -Added calibration button
       -Fixed crash issues when trying to connect to invalid IPs and sockets.
 
-	10-01-16
-	  PhouseServer
-	    -Set up fixed socket connection
-	    -Can take strings from clients and call java Robot functions accordingly
-	  PhouseClient
-	    -Added buttons for left/right click, connecting/disconnecting with server
-	    -Added onTouch and onClick event listeners which allow for tracking
-	     presses as well as releases for realistic mouse inputs.
+  10-01-16
+    PhouseServer
+      -Set up fixed socket connection
+      -Can take strings from clients and call java Robot functions accordingly
+    PhouseClient
+      -Added buttons for left/right click, connecting/disconnecting with server
+      -Added onTouch and onClick event listeners which allow for tracking
+       presses as well as releases for realistic mouse inputs.
