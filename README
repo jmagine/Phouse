@@ -52,7 +52,7 @@ Changelog:
       -Added editText fields for server IP and socket
       -Added calibration button
       -Fixed crash issues when trying to connect to invalid IPs and sockets.
-      
+
 	10-01-16
 	  PhouseServer
 	    -Set up fixed socket connection
