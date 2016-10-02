@@ -1,0 +1,40 @@
+--------------------------------------------------------------------------------
+                     _____ _   _ _____ _   _ _____ _____ 
+                    |  _  | | | |  _  | | | |  ___|  ___|
+                    | |_| | |_| | | | | | | | |___| |___ 
+                    |  ___|  _  | | | | | | |___  |  ___|
+                    | |   | | | | |_| | |_| |___| | |___ 
+                    |_|   |_| |_|_____|_____|_____|_____|
+                                                         
+--------------------------------------------------------------------------------
+Phouse, also known as the phone mouse, is an android application which can
+connect to a computer running a phouse server over wifi and act as a mouse.
+This allows for remote control of the computer through a socket connection.
+Unlike other android mouse applications, this one moves the mouse through
+2-axis accelerometer input, with adjustable sensitivity and left/right click
+functionality. Furthermore, the point around which the device detects rotation
+can be set using the calibrate button. 
+--------------------------------------------------------------------------------
+Setup
+
+First, place both the computer and Android device on the same network.
+
+On Computer/Server:
+  cd phouseServer
+  javac driver.java
+  java driver
+
+Note the socket requested of the user for future reference.
+  
+On Android device:
+  Download APK.
+  For server IP, enter the IP address of the computer.
+  For socket, enter the socket noted above.
+  Press Connect
+  
+The mouse will immediately begin moving.
+Tilt the device forwards/backwards and side to side to move the cursor around. 
+Adjust the sensitivity to a speed of your liking.
+The left/right mouse buttons can be held down like a normal mouse's buttons.
+Calibrate zeros the speed of the cursor at any given rotation of the device.
+--------------------------------------------------------------------------------
