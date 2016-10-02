@@ -13,6 +13,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import android.widget.SeekBar;
+import android.widget.EditText;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -27,14 +29,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
   private Button  connectButton;
   private Toast   updates;
 
+  private String  ipAddr;
+  private int     socketNum;
+
   private boolean isConnected = false;
   private float   orientation[] = new float[3];
+  private int     sensVal = 50;
 
   private Socket      socket;
   private PrintWriter out;
 
   private SensorManager sensorM;
   private Sensor        accSensor;
+
+  private float xCal;
+  private float yCal;
 
   //Read newest data from sensors continuously
   private SensorEventListener accListener = new SensorEventListener() {
@@ -46,8 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         orientation[2] = event.values[2];
 
         if(out != null)
-          out.println(orientation[0] * -1 + "," + orientation[1]);
-          //out.println(orientation[0] + " " + orientation[1] + " " + orientation[2]);
+          out.println((float) sensVal / 50 * (orientation[0] - xCal) * -1 + "," + (float) sensVal / 50 * (orientation[1] - yCal));
       }
     }
 
@@ -57,6 +65,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
   };
 
+  /*
+   * Runs when app starts
+   */
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -71,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //initialize accelerometer/sensor manager/listener
     sensorM = (SensorManager) getSystemService(SENSOR_SERVICE);
     accSensor = sensorM.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-    sensorM.registerListener(accListener, accSensor, SensorManager.SENSOR_DELAY_NORMAL);
+    sensorM.registerListener(accListener, accSensor, SensorManager.SENSOR_DELAY_FASTEST);
 
     connectButton = (Button) findViewById(R.id.connectButton);
 
@@ -109,11 +120,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         return false;
       }
-
     });
+    SeekBar sensitivity = (SeekBar) findViewById(R.id.sensitivity);
+    sensitivity.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+      @Override
+      public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        sensVal = progress;
+      }
+
+      @Override
+      public void onStartTrackingTouch(SeekBar seekBar) {
+
+      }
+
+      @Override
+      public void onStopTrackingTouch(SeekBar seekBar) {
+
+      }
+    });
+    findViewById(R.id.calibrateButton).setOnClickListener(this);
   }
 
-  //OnClick method is called when any of the buttons are pressed
+  /*
+   * OnClick method is called when any of the onClick buttons are pressed
+   */
   @Override
   public void onClick(View v) {
     switch (v.getId()) {
@@ -124,6 +154,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
           updates.cancel();
           updates = Toast.makeText(context, "Connecting...", Toast.LENGTH_SHORT);
           updates.show();
+
+          ipAddr = ((EditText)findViewById(R.id.ip_address)).getText().toString();
+          String socketStr = ((EditText)findViewById(R.id.socket)).getText().toString();
+          try {
+            socketNum = Integer.parseInt(socketStr);
+          } catch (NumberFormatException e){
+            updates.cancel();
+            updates = Toast.makeText(context, "Invalid socket. Enter a positive integer.", Toast.LENGTH_SHORT);
+            updates.show();
+          }
 
           setConnection(true);
 
@@ -173,6 +213,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
           }
         }
         break;
+      case R.id.calibrateButton:
+        xCal = orientation[0];
+        yCal = orientation[1];
+        break;
+
     }
   }
 
@@ -191,8 +236,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
   public void setConnection(boolean state) {
     if(state) {
       try {
-        InetAddress serverAddr = InetAddress.getByName("10.20.1.173");
-        socket = new Socket(serverAddr, 8998);//Open socket on server IP and port
+        InetAddress serverAddr = InetAddress.getByName(ipAddr);
+        socket = new Socket(serverAddr, socketNum); //Open socket on server IP and port
         isConnected = true;
       } catch (IOException e) {
         Log.e("remotedroid", "Error while connecting", e);

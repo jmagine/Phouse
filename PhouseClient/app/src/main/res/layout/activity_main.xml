@@ -4,70 +4,86 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:padding="16dp"
   android:orientation="vertical"
-  android:background="#00bfff"
+  android:background="#000000"
   tools:context="com.example.android.phouse.MainActivity">
 
-  <Button
-    android:id="@+id/connectButton"
-    android:layout_width="200dp"
-    android:layout_height="40dp"
-    android:layout_gravity="center"
+  <EditText
+    android:id="@+id/ip_address"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:layout_marginTop="16dp"
-    android:background="#008fff"
-    android:text="Connect"
+    android:hint="Server IP"
+    android:textColorHint="#444444"
+    android:inputType="text"
     android:textColor="#ffffff"
     android:textStyle="bold"
-    android:textSize="16sp" />
+    android:textSize="16sp"
+    android:background="#000000"/>
 
-  <LinearLayout
+  <ImageView
     android:layout_width="match_parent"
+    android:layout_height="2dp"
+    android:background="#00cfff"/>
+
+  <EditText
+    android:id="@+id/socket"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="16dp"
-    android:orientation="horizontal"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp">
+    android:hint="Socket"
+    android:textColorHint="#444444"
+    android:inputType="number"
+    android:textColor="#ffffff"
+    android:textStyle="bold"
+    android:textSize="16sp"
+    android:background="#000000"/>
 
-    <EditText
-      android:id="@+id/ip_address"
-      android:layout_width="0dp"
+  <ImageView
+    android:layout_width="match_parent"
+    android:layout_height="2dp"
+    android:background="#00cfff"/>
+
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:text="Sensitivity"
+    android:textColor="#ffffff"
+    android:textSize="16sp"/>
+
+  <SeekBar
+    android:id="@+id/sensitivity"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:progress="50"
+    android:thumbTint="#00cfff"/>
+
+  <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_weight="1"
-      android:layout_gravity="center"
-      android:layout_marginRight="8dp"
-      android:hint="Server IP"
-      android:textColorHint="#444444"
-      android:gravity="center"
-      android:inputType="text"
-      android:background="#008fff"
+      android:text="Low"
       android:textColor="#ffffff"
-      android:textStyle="bold"
-      android:textSize="16dp"/>
+      android:textSize="12sp"/>
 
-    <EditText
-      android:id="@+id/socket"
-      android:layout_width="0dp"
+    <TextView
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_weight="1"
-      android:layout_gravity="center"
-      android:layout_marginLeft="8dp"
-      android:hint="Socket"
-      android:textColorHint="#444444"
-      android:gravity="center"
-      android:inputType="number"
-      android:background="#008fff"
+      android:layout_alignParentRight="true"
+      android:text="High"
       android:textColor="#ffffff"
-      android:textStyle="bold"
-      android:textSize="16dp"/>
-
-  </LinearLayout>
+      android:textSize="12sp"/>
+  </RelativeLayout>
 
   <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp">
+    android:orientation="horizontal">
 
     <Button
       android:id="@+id/lclickButton"
@@ -77,7 +93,7 @@
       android:layout_gravity="center"
       android:layout_marginRight="8dp"
       android:layout_marginTop="8dp"
-      android:background="#008fff"
+      android:background="#00cfff"
       android:text="L Click"
       android:textColor="#ffffff"
       android:textStyle="bold"
@@ -91,12 +107,36 @@
       android:layout_gravity="center"
       android:layout_marginTop="8dp"
       android:layout_marginLeft="8dp"
-      android:background="#008fff"
+      android:background="#00cfff"
       android:text="R Click"
       android:textColor="#ffffff"
       android:textStyle="bold"
       android:textSize="16sp" />
 
   </LinearLayout>
+
+  <Button
+    android:id="@+id/connectButton"
+    android:layout_width="200dp"
+    android:layout_height="40dp"
+    android:layout_gravity="center"
+    android:layout_marginTop="16dp"
+    android:background="#00cfff"
+    android:text="Connect"
+    android:textColor="#ffffff"
+    android:textStyle="bold"
+    android:textSize="16sp" />
+
+  <Button
+    android:id="@+id/calibrateButton"
+    android:layout_width="200dp"
+    android:layout_height="40dp"
+    android:layout_gravity="center"
+    android:layout_marginTop="16dp"
+    android:background="#00cfff"
+    android:text="Calibrate"
+    android:textColor="#ffffff"
+    android:textStyle="bold"
+    android:textSize="16sp" />
 
 </LinearLayout>
