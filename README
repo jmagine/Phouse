@@ -33,7 +33,7 @@ On Android device:
   For socket, enter the socket noted above.
   Press Connect
   
-The mouse will immediately begin moving.
+The mouse will immediately begin moving based on tilts.
 Tilt the device forwards/backwards and side to side to move the cursor around. 
 Adjust the sensitivity to a speed of your liking.
 The left/right mouse buttons can be held down like a normal mouse's buttons.
@@ -44,6 +44,7 @@ Changelog:
     PhouseServer
       -Added fps counter.
     PhouseClient
+      -Updated application launcher icon
       -Fixed socket timeout issues, now times out after 1 second.
       -Added zero movement area, adjustable with slider.
       -Changed range of sensitivity bar (0-1000).
