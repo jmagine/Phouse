@@ -40,6 +40,16 @@ The left/right mouse buttons can be held down like a normal mouse's buttons.
 Calibrate zeros the speed of the cursor at any given rotation of the device.
 --------------------------------------------------------------------------------
 Changelog:
+  10-17-16
+    PhouseServer
+      -Added fps counter.
+    PhouseClient
+      -Fixed socket timeout issues, now times out after 1 second.
+      -Added zero movement area, adjustable with slider.
+      -Changed range of sensitivity bar (0-1000).
+      -Click buttons now change color while pressed.
+      -Toast notifications appear lower so calibrate button is unobstructed.
+      -Server IP and Socket fields are now as large as the screen.
   10-02-16
     PhouseServer
       -User-defined socket connection
