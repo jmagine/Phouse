@@ -21,14 +21,14 @@ First, place both the computer and Android device on the same network.
 
 On Computer/Server:
   (need javac setup)
-  cd phouseServer
+  cd phouseServer/src/
   javac driver.java
   java driver
 
 Note the socket requested of the user for future reference.
   
 On Android device:
-  Download APK.
+  Download APK, place on phone, and use a file manager to run it (app-debug.apk)
   For server IP, enter the IP address of the computer.
   For socket, enter the socket noted above.
   Press Connect

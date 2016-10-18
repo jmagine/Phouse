@@ -11,10 +11,10 @@
 
   <EditText
     android:id="@+id/ip_address"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="16dp"
-    android:hint="Server IP"
+    android:hint="@string/server_ip"
     android:textColorHint="#444444"
     android:inputType="text"
     android:textColor="#ffffff"
@@ -25,14 +25,15 @@
   <ImageView
     android:layout_width="match_parent"
     android:layout_height="2dp"
+    android:contentDescription="@null"
     android:background="#00cfff"/>
 
   <EditText
     android:id="@+id/socket"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="16dp"
-    android:hint="Socket"
+    android:hint="@string/socket"
     android:textColorHint="#444444"
     android:inputType="number"
     android:textColor="#ffffff"
@@ -43,13 +44,14 @@
   <ImageView
     android:layout_width="match_parent"
     android:layout_height="2dp"
+    android:contentDescription="@null"
     android:background="#00cfff"/>
 
   <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp"
-    android:text="Sensitivity"
+    android:text="@string/sensitivity"
     android:textColor="#ffffff"
     android:textSize="16sp"/>
 
@@ -57,7 +59,8 @@
     android:id="@+id/sensitivity"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:progress="50"
+    android:max="1000"
+    android:progress="500"
     android:thumbTint="#00cfff"/>
 
   <RelativeLayout
@@ -67,7 +70,7 @@
     <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="Low"
+      android:text="@string/low"
       android:textColor="#ffffff"
       android:textSize="12sp"/>
 
@@ -75,7 +78,45 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_alignParentRight="true"
-      android:text="High"
+      android:layout_alignParentEnd="true"
+      android:text="@string/high"
+      android:textColor="#ffffff"
+      android:textSize="12sp"/>
+  </RelativeLayout>
+
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:text="@string/zero_move"
+    android:textColor="#ffffff"
+    android:textSize="16sp"/>
+
+  <SeekBar
+    android:id="@+id/zerothreshold"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:max="10"
+    android:progress="5"
+    android:thumbTint="#00cfff"/>
+
+  <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/low"
+      android:textColor="#ffffff"
+      android:textSize="12sp"/>
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentRight="true"
+      android:layout_alignParentEnd="true"
+      android:text="@string/high"
       android:textColor="#ffffff"
       android:textSize="12sp"/>
   </RelativeLayout>
@@ -92,9 +133,10 @@
       android:layout_weight="1"
       android:layout_gravity="center"
       android:layout_marginRight="8dp"
+      android:layout_marginEnd="8dp"
       android:layout_marginTop="8dp"
       android:background="#00cfff"
-      android:text="L Click"
+      android:text="@string/l_click"
       android:textColor="#ffffff"
       android:textStyle="bold"
       android:textSize="16sp" />
@@ -107,8 +149,9 @@
       android:layout_gravity="center"
       android:layout_marginTop="8dp"
       android:layout_marginLeft="8dp"
+      android:layout_marginStart="8dp"
       android:background="#00cfff"
-      android:text="R Click"
+      android:text="@string/r_click"
       android:textColor="#ffffff"
       android:textStyle="bold"
       android:textSize="16sp" />
@@ -122,7 +165,7 @@
     android:layout_gravity="center"
     android:layout_marginTop="16dp"
     android:background="#00cfff"
-    android:text="Connect"
+    android:text="@string/connect"
     android:textColor="#ffffff"
     android:textStyle="bold"
     android:textSize="16sp" />
@@ -134,7 +177,7 @@
     android:layout_gravity="center"
     android:layout_marginTop="16dp"
     android:background="#00cfff"
-    android:text="Calibrate"
+    android:text="@string/calibrate"
     android:textColor="#ffffff"
     android:textStyle="bold"
     android:textSize="16sp" />
