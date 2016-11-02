@@ -40,6 +40,10 @@ The left/right mouse buttons can be held down like a normal mouse's buttons.
 Calibrate zeros the speed of the cursor at any given rotation of the device.
 --------------------------------------------------------------------------------
 Changelog:
+  11-02-16
+    PhouseServer
+      -Extrapolates mouse input now for a much smoother feel.
+      -Now allows for other mouse inputs to influence position of mouse.
   10-17-16
     PhouseServer
       -Added fps counter.
