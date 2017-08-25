@@ -1,3 +1,13 @@
+/*-----------------------------------------------------------------------------
+
+                                                         Author: Jason Ma
+                                                         Date:   Oct 01 2016
+                                      Phouse
+
+  File Name:      ComputerPort.java
+  Description:    Handles connection to port on computer and received inputs.
+-----------------------------------------------------------------------------*/
+
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.Toolkit;
@@ -11,7 +21,14 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
- 
+
+/*-----------------------------------------------------------------------------
+  Class Name: ComputerPort
+  File:         ComputerPort.java
+  
+  Description: Handles server side of phouse connection, which includes setting
+               up a port to receive inputs and handling the inputs.
+-----------------------------------------------------------------------------*/
 public class ComputerPort {
   private BufferedReader in = null;
   private ServerSocket server = null;
@@ -23,22 +40,34 @@ public class ComputerPort {
   private int serverPort = 9000;
   private int height;
   private int width;
-  
+
   private int count = 0;
+
   private float extrapolationCount;
-  
   private long currTime;
   private long lastMovementTime;
   private long lastSecondTime;
-  
+
   private float nowx;
   private float nowy;
- 
+
+  /*---------------------------------------------------------------------------
+    Routine Name: ComputerPort
+    File:         ComputerPort.java
+  
+    Description: Constructor for ComputerPort
+  ---------------------------------------------------------------------------*/
   public ComputerPort() {
     selectPort();
     init();
   }
+
+  /*---------------------------------------------------------------------------
+    Routine Name: ComputerPort
+    File:         ComputerPort.java
   
+    Description: Takes in user input to select a port for use.
+  ---------------------------------------------------------------------------*/
   private void selectPort() {
     Scanner scan = new Scanner(System.in);
     System.out.print("Please select a socket (e.g. 9000): ");
@@ -46,7 +75,13 @@ public class ComputerPort {
     scan.close();
     System.out.println("[Server] Port: " + serverPort);
   }
+
+  /*---------------------------------------------------------------------------
+    Routine Name: ComputerPort
+    File:         ComputerPort.java
   
+    Description: Initializes socket and mouse controller.
+  ---------------------------------------------------------------------------*/
   private void init() {
     try{
       System.out.println("[Server] INIT: Socket: " + serverPort);
@@ -68,7 +103,14 @@ public class ComputerPort {
       System.exit(-1);
     }
   }
+
+  /*---------------------------------------------------------------------------
+    Routine Name: updateState
+    File:         ComputerPort.java
   
+    Description: Updates state of connection and mouse depending on received
+                 inputs.
+  ---------------------------------------------------------------------------*/
   public void updateState() {
     float movex = 0;
     float movey = 0;
@@ -140,9 +182,9 @@ public class ComputerPort {
               running = false;
             }
           }
-            
+
           currTime = System.nanoTime();
-                    
+
           //input will come in x,y format if user moves mouse on mousepad
           if(currTime - lastMovementTime > 1000000 && line.contains(",")) {
             Point point = MouseInfo.getPointerInfo().getLocation(); //Get current mouse position
